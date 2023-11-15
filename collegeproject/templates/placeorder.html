@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+  placeorder details
+{% endblock %}
+{% block title %}
+placeorder
+{% endblock %}
+{% block content %}
+<div class="row my_row_class">
+    <div class = "mx_auto">
+      <p><a href ="{% url 'authentication:allCourse' %}">Home</a></p>
+    </div>
+  </div>
+<div class="form-container">
+    <div class="row">
+         <div class="col-sm-12 col-md-12 col-lg-12 p-5">
+               <div class="card border-primary" style="">
+                   <div class="card-body text-center">
+                       <h5 class="card-title">Place order for materials</h5>
+                  <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                  <div class="form-group">
+                 <label for="title">Title</label>
+                 <input type="text"  id=" name" name=" name" placeholder="Enter the title" required><br>
+                 </div>
+                 <div class="form-group">
+                     <label for="department">Choose Department</label>
+                     <select name="department" class="select">
+                        {% for dept in department %}
+                            <option value="{{dept.id}}">{{dept.name}}</option>
+                        {% endfor %}
+                    </select>
+                     </div>
+                      <div class="form-group">
+                      <label for="pen">Pens</label>
+                      <input type="text"  name="pens" value="{{userorder.item_pen_no}}" placeholder="Enter the number of pens" required><br>
+               </div>
+                      <div class="form-group">
+             <label for="books">Note Books</label>
+             <input type="number" name="books" value="{{userorder.item_book_no}}" placeholder="Enter the number of books" required><br>
+         </div>
+                      <div class="form-group">
+             <label for="papers">Exam Papers</label>
+             <input type="number" name="papers" value="{{userorder.item_paper_no}}" placeholder="Enter the number of papers" required><br>
+         </div>
+             <div class="mb-3">
+                     <label for="desc" class="form-label">Questions/Comments</label>
+                     <textarea class="form-control" name="comments" rows="3"></textarea>
+                     </div>
+                     <button type="submit" class="btn btn-primary">Submit</button>
+       </form>
+        </div>
+      </div>
+     </div>
+</body>
+</html>
+{% endblock %}

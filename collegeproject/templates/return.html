@@ -1,0 +1,60 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+   return details
+{% endblock %}
+{% block title %}
+  return
+{% endblock %}
+{% block content %}
+<div class="row my_row_class">
+    <div class = "mx_auto">
+      <p><a href ="{% url 'authentication:allCourse' %}">Home</a></p>
+    </div>
+  </div>
+<div class="form-container">
+          <div class="row">
+             <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="card border-primary" style="">
+                   <div class="card-body">
+                   <h5 class="card-title text-center">Fill the form to return materials</h5>
+                  <form method="POST"  enctype="multipart/form-data">
+                    {% csrf_token %}
+                  <div class="form-group">
+                 <label for="title">Title</label>
+                 <input type="text"  id=" name" name=" name" placeholder="Enter the title" required><br>
+                 </div>
+                 <div class="form-group">
+                     <label for="department">Choose Department</label>
+                     <select name="department" class="select">
+                        {% for dept in department %}
+                            <option value="{{dept.id}}">{{dept.name}}</option>
+                        {% endfor %}
+                    </select>
+                     </div>
+                      <div class="form-group">
+               <label for="Bookname">Book Name</label>
+               <input type="text" id="bookname" name="bookname" placeholder="Enter the book name" required><br>
+               </div>
+                 <div class="form-group">
+               <label for="author">Author</label>
+               <input type="text" id="author" name="author" placeholder="Enter the author details" required><br>
+               </div>
+                <div class="form-group">
+               <label for="bookdate">Checked In</label>
+               <input type="date" id="bookdate" name="bookdate" placeholder="Enter the date when the book is taken" required><br>
+               </div>
+                <div class="mb-3">
+                    <label for="Textarea" class="form-label">Questions/Comments</label>
+                    <textarea class="form-control" value="{{userorder.comments}}" name="comments" rows="3"></textarea>
+                     </div>
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                     </div>
+                    </form>
+                   </div>
+                </div>
+             </div>
+          </div>
+</div>
+{% endblock %}

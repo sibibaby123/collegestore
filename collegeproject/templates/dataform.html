@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+ fill the details    
+{% endblock %}
+{% block title %}
+   Entry form
+{% endblock %}
+{% block content %}
+</head>
+  <body class="bg-light">
+    <div class="row my_row_class">
+      <div class = "mx_auto">
+        <p><a href ="{% url 'authentication:allCourse' %}">Home</a></p>
+      </div>
+    </div>
+    <div class="form-container">
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 text-primary offset-lg-0 p-5">
+              <div class="card border-primary">
+                  <div class="card-body text-center">
+                      <div class="card-title text-primary">Fill the form details</div>
+                       <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                       <div class="form-group text-primary ">
+                          <label for="fname text-primary">First Name</label>
+                           <input type="text" class="form-control text-primary" value="{{user.first_name}}" id="fname" name="fname" aria-describedby="" placeholder="Enter your name" required>
+                       </div><br>
+                       <div class="form-group text-primary">
+                          <label for="lname text-primary">Last Name</label>
+                           <input type="text" class="form-control text-primary" value="{{user.last_name}}" id="lname" name="lname" aria-describedby="" placeholder="Enter your name" required>
+                       </div><br>
+                       <div class="form-group text-primary">
+                           <label for="email text-primary">Email</label>
+                           <input type="email" class="form-control text-primary" value="{{user.email}}" id="email" name="email" placeholder="Enter the email" required>
+                        </div><br>
+                       <div class="form-group text-primary">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control text-primary" id="username" value="{{user.username}}" name="username" placeholder="Enter the username" required>
+                       </div><br>
+                       <div class="form-group text-primary">
+                           <label for="date">DATE OF BIRTH</label>
+                           <input type="date" class="form-control text-primary" value="{{userextra.dateofbirth|date:'Y-m-d'}}" id="date" name="date" aria-describedby="" placeholder="Enter your dob" required>
+                       </div><br>
+                       <div class="form-group text-primary">
+                           <label for="age">AGE</label>
+                           <input type="number" class="form-control text-primary" id="age" value="{{userextra.age}}" name="age" aria-describedby="" placeholder="Enter your age" required>
+                       </div><br>
+                       <div class="form-check form-check text-primary">GENDER <hr>
+
+                          <input class="form-check-input" type="radio" name="inlineRadioOptions"  {% if userextra.gender %}checked{% endif %}  id="inlineRadio1" value="1" required>
+                          <label class="form-check-label" for="inlineRadio1">MALE</label> </div>
+                          <div class="form-check form-check text-primary"><br>
+                          <input class="form-check-input" type="radio"  {% if not userextra.gender %}checked{% endif %} name="inlineRadioOptions" id="inlineRadio2" value="0" required>
+                          <label class="form-check-label" for="inlineRadio2">FEMALE</label>
+                          </div><br>
+                       <div class="form-group text-primary">
+                      <label for="number">PHONE NUMBER</label>
+                          <input type="number" class="form-control text-primary" id="number" value="{{userextra.phonenumber}}" name="number" aria-describedby="" placeholder="Enter your phone number" required>
+                      </div><br>
+                     <div class="form-group text-primary">
+                     <label for="inputAddress">Address</label>
+                     <textarea rows="5" class="form-control text-primary" name="address"  value="{{userextra.address}}" ></textarea>
+                     </div><br>
+                     <button type="submit" <a href="{% url 'authentication:allCourse' %}" class="btn btn-primary">Submit</button>
+                    </form>
+                   </div>
+                </div>
+           </div>
+         </div>
+     </div>
+  </div>
+  </body>
+</html>
+{% endblock %}
+

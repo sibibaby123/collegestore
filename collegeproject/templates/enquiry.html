@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+   enquiry details
+{% endblock %}
+{% block title %}
+enquiry
+{% endblock %}
+{% block content %}
+<div class="row my_row_class">
+    <div class = "mx_auto">
+      <p><a href ="{% url 'authentication:allCourse' %}">Home</a></p>
+    </div>
+  </div>
+<div class="form-container">
+       <div class="row">
+           <div class="col-sm-12 col-md-12 col-lg-12 mx-5 p-5">
+               <div class="card border-primary" style="">
+                   <div class="card-body">
+                   <h5 class="card-title">Student Enquiry form</h5>
+                   <h6 class="card-title">Personal Details</h6>
+                  <form method="POST" >
+                      {% csrf_token %}
+                      <div class="form-group">
+                      <label for="title ml-5">Title</label>
+                      <input type="text" class="form-control" id="title" name="title" placeholder="Enter the title" required>
+
+                     </div>
+                     <div class="form-group">
+                     <label for="text">Choose Department</label>
+                    <select name="department" class="select">
+                        {% for dept in department %}
+                            <option value="{{dept.id}}">{{dept.name}}</option>
+                        {% endfor %}
+                    </select>
+                     </div>
+                     <div class="mb-3">
+                     <label for="desc" class="form-label">Questions/Comments</label>
+                     <textarea class="form-control" name="comments" rows="3"></textarea>
+                     </div>
+                     <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                    </div>
+                 </div>
+              </div>
+         </div>
+   </div>
+{% endblock %}
